@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Individuals",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos laudantium in iusto iure aliquam commodi possimus eaque sit recusandae incidunt?",
+    "imgSrc": "https://media2.giphy.com/media/SsTcO55LJDBsI/giphy.gif"
+  },
+  {
+    "id": 2,
+    "title": "Startups",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos laudantium in iusto iure aliquam commodi possimus eaque sit recusandae incidunt?",
+    "imgSrc": "https://media3.giphy.com/media/3oz8xR9wKr8TaazlQc/giphy.gif"
+  },
+  {
+    "id": 3,
+    "title": "Enterprise",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos laudantium in iusto iure aliquam commodi possimus eaque sit recusandae incidunt?",
+    "imgSrc": "https://media1.giphy.com/media/VkMV9TldsPd28/giphy.gif"
+  }
+]

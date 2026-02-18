@@ -1,0 +1,83 @@
+/* ===============================
+   THEME VARIABLES
+================================= */
+
+:root {
+  /* Backgrounds */
+  --color-bg: #ffffff;
+  --color-card-bg: #ffffff;
+
+  /* Borders */
+  --color-border: #e5e5e5;
+
+  /* Text */
+  --color-text-primary: #111111;
+  --color-text-secondary: #555555;
+
+  /* Shadow */
+  --color-shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* ===============================
+   DARK MODE
+================================= */
+
+html[data-theme="dark"] {
+  --color-bg: #0f172a;
+  /* slate-900 style */
+  --color-card-bg: #1e293b;
+  /* slate-800 */
+
+  --color-border: #334155;
+  /* slate-700 */
+
+  --color-text-primary: #f1f5f9;
+  /* light text */
+  --color-text-secondary: #94a3b8;
+  /* muted text */
+
+  --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+
+/* ===============================
+   GRID LAYOUT
+================================= */
+
+.grid {
+  display: grid;
+  gap: 10px;
+
+  grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
+
+  justify-content: center;
+
+  padding: 0;
+  list-style: none;
+}
+
+
+/* ===============================
+   CARD
+================================= */
+
+.compListItem {
+  padding: 10px;
+  border-radius: 6px;
+
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+
+  color: var(--color-text-primary);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.compListItem p {
+  color: var(--color-text-secondary);
+}
+
+.compListItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px var(--color-shadow);
+}

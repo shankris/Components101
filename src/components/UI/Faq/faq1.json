@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Why is the sky blue?",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque laboriosam neque reprehenderit saepe eius dolorum vel consequuntur perspiciatis ad vero.",
+    "defaultOpen": true
+  },
+  {
+    "title": "Why did the chicken cross the road?",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque laboriosam neque reprehenderit saepe eius dolorum vel consequuntur perspiciatis ad vero."
+  },
+  {
+    "title": "How many licks does it take to get to the center of a tootsie pop?",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque laboriosam neque reprehenderit saepe eius dolorum vel consequuntur perspiciatis ad vero."
+  },
+  {
+    "title": "Where's Waldo?",
+    "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque laboriosam neque reprehenderit saepe eius dolorum vel consequuntur perspiciatis ad vero."
+  }
+]

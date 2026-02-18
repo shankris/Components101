@@ -1,0 +1,37 @@
+{
+  "tabs": ["Web dev", "Mobile dev", "UI/UX", "Copywriting"],
+  "questions": {
+    "Web dev": [
+      {
+        "question": "What is web development?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      },
+      {
+        "question": "How do I know if I need it?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      }
+    ],
+    "Mobile dev": [
+      {
+        "question": "What is mobile development?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      },
+      {
+        "question": "Can you build for iOS and Android?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      }
+    ],
+    "UI/UX": [
+      {
+        "question": "What is UI/UX?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      }
+    ],
+    "Copywriting": [
+      {
+        "question": "What is copywriting?",
+        "answer": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+      }
+    ]
+  }
+}
