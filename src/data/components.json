@@ -21,10 +21,11 @@
     "description": "FAQ 3 - FAQ with Images"
   },
   {
-    "name": "Card",
-    "slug": "card",
+    "name": "Episode Grid - Layout Animation",
+    "component": "EpisodeGrid",
+    "slug": "episode-grid",
     "category": "layout",
-    "description": "Card container component"
+    "description": "Layout Animation usinc CSS"
   },
   {
     "name": "Modal",

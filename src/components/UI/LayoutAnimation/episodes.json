@@ -1,0 +1,45 @@
+{
+  "title": {
+    "heading": "LOREM",
+    "highlight": "IPSUM",
+    "subtitle": "egestas sapien"
+  },
+  "episodes": [
+    {
+      "id": 1,
+      "ep": "04",
+      "duration": "43 minutes",
+      "title": "Proxima Nova is Over",
+      "summary": "Seriously though, it's over.",
+      "synopsisTime": "43 MIN",
+      "notes": ["Vitae ultrices", "Aenean vel", "Ut condimentum", "Aenean metus", "Quisque sodales", "Accumsan metus"]
+    },
+    {
+      "id": 2,
+      "ep": "03",
+      "duration": "44 minutes",
+      "title": "Proxima Nova is Over",
+      "summary": "Seriously though, it's over.",
+      "synopsisTime": "44 MIN",
+      "notes": ["Vitae ultrices", "Aenean vel", "Ut condimentum"]
+    },
+    {
+      "id": 3,
+      "ep": "02",
+      "duration": "41 minutes",
+      "title": "Proxima Nova is Over",
+      "summary": "Seriously though, it's over.",
+      "synopsisTime": "41 MIN",
+      "notes": ["Quisque sodales", "Accumsan metus"]
+    },
+    {
+      "id": 4,
+      "ep": "01",
+      "duration": "42 minutes",
+      "title": "Proxima Nova is Over",
+      "summary": "Seriously though, it's over.",
+      "synopsisTime": "42 MIN",
+      "notes": ["Aenean metus", "Ut condimentum"]
+    }
+  ]
+}

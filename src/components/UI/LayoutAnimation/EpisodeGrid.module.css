@@ -1,0 +1,294 @@
+.container {
+  height: 100vh;
+  background-color: #131417;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+}
+
+.box {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 80%;
+  height: 80%;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/537051/smoke_texture2714-min.jpg") center center no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 50px 0 rgba(75, 27, 27, 0.7);
+  overflow: hidden;
+}
+
+/* ================= GRID CELLS ================= */
+
+.cell {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  width: 24%;
+  height: 29%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: translateZ(0);
+  transition: all 400ms 600ms, width 300ms 300ms,
+    background-color 300ms 600ms;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.cell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 500ms;
+}
+
+.cell::before {
+  content: "";
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 300ms;
+  z-index: -3;
+}
+
+.cell:hover::before {
+  background-color: #f25555;
+}
+
+/* positioning like original */
+.cell:nth-child(2) {
+  left: 75%;
+}
+
+.cell:nth-child(3) {
+  left: 100%;
+}
+
+/* ================= CELL INFO ================= */
+
+.info {
+  margin-left: 20px;
+  width: 100px;
+  color: #fff;
+  transition: 400ms 850ms;
+}
+
+.ep {
+  margin-top: 25px;
+  font-size: 10px;
+}
+
+.ep span {
+  padding-left: 10px;
+}
+
+.title {
+  letter-spacing: 2px;
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.sign {
+  margin: 15px 0 0 2px;
+  height: 3px;
+  width: 20px;
+  background-color: #fff;
+  border-radius: 1px;
+  transition: 200ms;
+}
+
+.time {
+  position: absolute;
+  bottom: 18px;
+  font-size: 10px;
+}
+
+/* ================= FULL INFO ================= */
+
+.full {
+  transform: translateX(-50px);
+  opacity: 0;
+  margin: 50px 0 0 90px;
+  transition: 300ms;
+}
+
+.full h1 {
+  line-height: 60px;
+  width: 300px;
+  color: #131313;
+  font-size: 60px;
+  font-weight: 900;
+}
+
+.full p {
+  padding-top: 50px;
+  color: #fff;
+}
+
+/* ================= ACTIVE STATES ================= */
+
+.active {
+  left: 0 !important;
+  top: 0 !important;
+  width: 50%;
+  height: 100%;
+  background-color: #f25555;
+  z-index: 5;
+  cursor: default;
+  opacity: 1 !important;
+  transition: all 400ms 400ms, width 300ms 800ms;
+}
+
+.active .info {
+  transform: translateX(50px);
+  opacity: 0;
+}
+
+.active .full {
+  transform: translateX(0);
+  opacity: 1;
+  transition: 300ms 900ms;
+}
+
+.cellFade {
+  opacity: 0;
+  transition: all 400ms 400ms, width 300ms 800ms,
+    opacity 200ms 300ms;
+}
+
+.hoverCell::after {
+  opacity: 1;
+}
+
+/* ================= CONTENT PANEL ================= */
+
+.content {
+  position: absolute;
+  inset: 0;
+  background-color: #1c1e22;
+  opacity: 0;
+  z-index: -10;
+  transition: all 400ms 600ms, z-index 0ms;
+}
+
+.showContent {
+  opacity: 1;
+  z-index: 2;
+  transition: all 300ms 400ms, z-index 0ms;
+}
+
+.contentWrapper {
+  margin-left: auto;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.contentInner {
+  position: absolute;
+  left: 18px;
+  transform: translateX(50px);
+  opacity: 0;
+  height: 100%;
+  overflow-y: auto;
+  transition: 400ms, opacity 200ms;
+}
+
+.showContent .contentInner {
+  transform: translateX(0);
+  opacity: 1;
+  transition: 300ms 1100ms;
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.close {
+  position: absolute;
+  top: 50px;
+  left: 100px;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.close span {
+  display: inline-block;
+  margin: 1px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: 400ms 500ms;
+}
+
+.close::before,
+.close::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: -14px;
+  width: 35px;
+  height: 2px;
+  background-color: #fff;
+  opacity: 0;
+  transition: 500ms;
+}
+
+.close::after {
+  transform: rotate(45deg);
+}
+
+.close::before {
+  transform: rotate(-45deg);
+}
+
+.closeActive::after,
+.closeActive::before {
+  opacity: 1;
+  transform: rotate(135deg);
+  transition: 500ms 800ms;
+}
+
+.closeActive::before {
+  transform: rotate(45deg);
+}
+
+.closeActive span {
+  opacity: 0;
+  transition: 0ms 800ms;
+}
+
+/* ================= TITLE ================= */
+
+.mainTitle {
+  position: absolute;
+  top: 25%;
+  left: 9%;
+}
+
+.mainTitle h1 {
+  color: #7b2222;
+  letter-spacing: 3px;
+  line-height: 65px;
+  font-size: 65px;
+}
+
+.mainTitle h1 span {
+  color: #fff;
+  letter-spacing: 6px;
+}
+
+.mainTitle p {
+  margin-top: 35%;
+  color: #7b2222;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
