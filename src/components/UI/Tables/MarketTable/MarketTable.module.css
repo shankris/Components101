@@ -1,0 +1,94 @@
+.container {
+  background: #0d1117;
+  padding: 16px;
+  border-radius: 12px;
+  color: #c9d1d9;
+}
+
+.title {
+  margin-bottom: 8px;
+}
+
+.periodBar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.periodBtn {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.periodBtn:hover {
+  color: #fff;
+}
+
+.active {
+  background: #1f6feb;
+  color: #fff;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th {
+  font-size: 12px;
+  color: #8b949e;
+  text-align: left;
+  cursor: pointer;
+  padding-bottom: 8px;
+}
+
+.td {
+  padding: 10px 0;
+  border-top: 1px solid #21262d;
+}
+
+.symbol strong {
+  display: block;
+}
+
+.symbol span {
+  font-size: 12px;
+  color: #8b949e;
+}
+
+.up {
+  color: #2ea043;
+}
+
+.down {
+  color: #f85149;
+}
+
+/* Skeleton */
+.skeletonRow td {
+  padding: 14px 0;
+}
+
+.skeleton {
+  height: 14px;
+  width: 100%;
+  background: linear-gradient(90deg,
+      #161b22 25%,
+      #21262d 37%,
+      #161b22 63%);
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+
+  100% {
+    background-position: 400px 0;
+  }
+}

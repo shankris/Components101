@@ -3,21 +3,21 @@
     "name": "FAQ 1",
     "component": "Faq1",
     "slug": "faq1",
-    "category": "form",
+    "category": "Acordion",
     "description": "FAQ 1 - Uses Motion for animation and is a great example..."
   },
   {
     "name": "FAQ 2",
     "component": "Faq2",
     "slug": "faq2",
-    "category": "form",
+    "category": "Acordion",
     "description": "FAQ 2 - FAQ with Tabs."
   },
   {
     "name": "FAQ 3",
     "component": "Faq3",
     "slug": "faq3",
-    "category": "form",
+    "category": "Acordion",
     "description": "FAQ 3 - FAQ with Images"
   },
   {
@@ -30,7 +30,22 @@
   {
     "name": "Modal",
     "slug": "modal",
+    "component": "Modal",
     "category": "feedback",
     "description": "Modal dialog component"
+  },
+  {
+    "name": "Market Table",
+    "slug": "MarketTable",
+    "component": "MarketTable",
+    "category": "Tables",
+    "description": "Market Table with Timeline"
+  },
+  {
+    "name": "Toast Notification 1",
+    "slug": "Toast1",
+    "component": "Toast1Demo",
+    "category": "Toast",
+    "description": "Toast Notification with Framer Motion - inspired by react-hot-toast"
   }
 ]

@@ -1,0 +1,188 @@
+/* Toast1.module.css */
+
+.container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 320px;
+
+  pointer-events: none;
+}
+
+.toast {
+  position: relative;
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+
+  padding: 6px 10px 10px;
+
+  border-radius: 6px;
+
+  backdrop-filter: blur(12px);
+
+  pointer-events: auto;
+
+  /* animation: slideIn 0.35s ease; */
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* THEMES */
+
+.light .toast {
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .toast {
+  background: rgba(22, 22, 22, 0.92);
+  color: #fff;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* TYPES */
+
+.success {
+  border-left: 5px solid #22c55e;
+}
+
+.error {
+  border-left: 5px solid #ef4444;
+}
+
+.warning {
+  border-left: 5px solid #f59e0b;
+}
+
+.alert {
+  border-left: 5px solid #f97316;
+}
+
+.loading {
+  border-left: 5px solid #3b82f6;
+}
+
+/* LAYOUT */
+
+.left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  flex: 1;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  margin-top: 2px;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.message {
+  margin-top: 6px;
+
+  font-size: 14px;
+  line-height: 1.45;
+
+  opacity: 0.8;
+}
+
+/* CLOSE BUTTON */
+
+.closeBtn {
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 16px;
+  color: inherit;
+
+  opacity: 0.6;
+
+  transition: opacity 0.2s ease;
+}
+
+.closeBtn:hover {
+  opacity: 1;
+}
+
+/* PROGRESS BAR */
+
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  height: 3px;
+  width: 100%;
+
+  background: currentColor;
+
+  transform-origin: left;
+
+  animation-name: progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+
+  opacity: 0.2;
+}
+
+/* LOADER */
+
+.loader {
+  animation: spin 1s linear infinite;
+}
+
+/* ANIMATIONS */
+
+
+
+@keyframes progress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
