@@ -24,7 +24,7 @@ let toastTrigger;
 |                 default: "info"
 |
 | duration      : number | Infinity
-|                 default: 3000
+|                 default: 5000
 |
 | showIcon      : boolean
 |                 default: true
@@ -60,14 +60,14 @@ let toastTrigger;
 */
 
 const icons = {
-  success: <CircleCheckBig size={34} />,
-  error: <CircleX size={34} />,
-  warning: <TriangleAlert size={34} />,
-  alert: <OctagonAlert size={34} />,
-  info: <Info size={34} />,
+  success: <CircleCheckBig size={40} />,
+  error: <CircleX size={40} />,
+  warning: <TriangleAlert size={40} />,
+  alert: <OctagonAlert size={40} />,
+  info: <Info size={40} />,
   loading: (
     <Loader
-      size={34}
+      size={40}
       className={styles.loader}
     />
   ),
@@ -80,7 +80,7 @@ export function toast1(options = {}) {
     title: options.title ?? "",
     message: options.message ?? "",
     type: options.type ?? "info",
-    duration: options.duration ?? 3000,
+    duration: options.duration ?? 5000,
     showIcon: options.showIcon ?? true,
     closable: options.closable ?? true,
     showProgress: options.showProgress ?? true,

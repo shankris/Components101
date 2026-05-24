@@ -1,0 +1,31 @@
+.ripple {
+  --ripple-color: color-mix(in srgb, currentColor 24%, transparent);
+
+  --ripple-duration: 1800ms;
+
+  --ripple-scale: 4;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+
+  border-radius: 9999px;
+
+  transform: scale(0);
+
+  pointer-events: none;
+
+  background: var(--ripple-color);
+
+  animation: ripple-animation var(--ripple-duration) cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(var(--ripple-scale));
+    opacity: 0;
+  }
+}

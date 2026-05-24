@@ -1,37 +1,44 @@
 [
   {
+    "name": "Image Accordion",
+    "component": "ImageAccordion",
+    "slug": "ImageAccordion",
+    "category": "Accordion",
+    "description": "Accordion with Images"
+  },
+  {
     "name": "FAQ 1",
     "component": "Faq1",
     "slug": "faq1",
-    "category": "Acordion",
-    "description": "FAQ 1 - Uses Motion for animation and is a great example..."
+    "category": "FAQ",
+    "description": "Uses Motion for animation"
   },
   {
     "name": "FAQ 2",
     "component": "Faq2",
     "slug": "faq2",
-    "category": "Acordion",
-    "description": "FAQ 2 - FAQ with Tabs."
+    "category": "FAQ",
+    "description": "FAQ with Tabs."
   },
   {
     "name": "FAQ 3",
     "component": "Faq3",
     "slug": "faq3",
-    "category": "Acordion",
-    "description": "FAQ 3 - FAQ with Images"
+    "category": "FAQ",
+    "description": "FAQ with Images"
   },
   {
     "name": "Episode Grid - Layout Animation",
     "component": "EpisodeGrid",
     "slug": "episode-grid",
-    "category": "layout",
+    "category": "Layout Animation",
     "description": "Layout Animation usinc CSS"
   },
   {
     "name": "Modal",
     "slug": "modal",
     "component": "Modal",
-    "category": "feedback",
+    "category": "Modal",
     "description": "Modal dialog component"
   },
   {
@@ -46,6 +53,6 @@
     "slug": "Toast1",
     "component": "Toast1Demo",
     "category": "Toast",
-    "description": "Toast Notification with Framer Motion - inspired by react-hot-toast"
+    "description": "Toast Notification using Motion animation"
   }
 ]

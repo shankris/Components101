@@ -5,6 +5,8 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 
+import Ripple from "@/components/UI/Ripple/Ripple";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -28,6 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={`${montserrat.variable} ${openSans.variable}`}>
+        <Ripple />
         <Header />
 
         <div className='app-shell'>
