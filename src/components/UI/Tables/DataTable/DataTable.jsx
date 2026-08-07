@@ -4,35 +4,71 @@ import React, { useState, useMemo } from "react";
 import { useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from "@tanstack/react-table";
 import styles from "./DataTable.module.css";
 
-export default function DataTable({ data = [] }) {
+export default function DataTable({ data = [], config = [] }) {
   const [sorting, setSorting] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
 
-  // Dynamically create column definitions based on JSON keys
-  const columns = useMemo(() => {
-    if (!data || data.length === 0) return [];
-
-    const sample = data[0];
-    return Object.keys(sample).map((key) => ({
-      accessorKey: key,
-      header: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, " "),
-      cell: (info) => {
-        const val = info.getValue();
-        if (typeof val === "boolean") return val ? "Yes" : "No";
-        if (val === null || val === undefined) {
-          return <span className={styles.emptyValue}>—</span>;
-        }
-        return String(val);
-      },
-    }));
+  // Safely ensure data is an array
+  const safeData = useMemo(() => {
+    if (Array.isArray(data)) return data;
+    if (typeof data === "string") {
+      try {
+        return JSON.parse(data);
+      } catch {
+        return [];
+      }
+    }
+    return [];
   }, [data]);
 
+  // Build columns dynamically
+  const columns = useMemo(() => {
+    if (Array.isArray(config) && config.length > 0) {
+      return config.map((col) => {
+        const key = typeof col === "string" ? col : col.key;
+        const label = typeof col === "object" && col.label ? col.label : key ? key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, " ") : "";
+        const align = typeof col === "object" && col.align ? col.align : "left";
+
+        return {
+          accessorKey: key,
+          header: label,
+          meta: { align },
+          cell: (info) => {
+            const val = info.getValue();
+            if (typeof val === "boolean") return val ? "Yes" : "No";
+            if (val === null || val === undefined) {
+              return <span className={styles.emptyValue}>—</span>;
+            }
+            return String(val);
+          },
+        };
+      });
+    }
+
+    if (safeData.length > 0) {
+      const sample = safeData[0];
+      return Object.keys(sample).map((key) => ({
+        accessorKey: key,
+        header: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, " "),
+        meta: { align: "left" },
+        cell: (info) => {
+          const val = info.getValue();
+          if (val === null || val === undefined) return "—";
+          return String(val);
+        },
+      }));
+    }
+
+    return [];
+  }, [safeData, config]);
+
   const table = useReactTable({
-    data,
+    data: safeData,
     columns,
     state: {
       sorting,
-      globalFilter,
+      // Only include globalFilter in state when an actual query exists
+      ...(globalFilter ? { globalFilter } : {}),
     },
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
@@ -70,7 +106,7 @@ export default function DataTable({ data = [] }) {
           <input
             id='tableSearch'
             type='text'
-            value={globalFilter ?? ""}
+            value={globalFilter}
             onChange={(e) => setGlobalFilter(e.target.value)}
           />
         </div>
@@ -84,13 +120,21 @@ export default function DataTable({ data = [] }) {
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   const isSorted = header.column.getIsSorted();
+                  const align = header.column.columnDef.meta?.align || "left";
+
                   return (
                     <th
                       key={header.id}
                       onClick={header.column.getToggleSortingHandler()}
                       className={`${styles.th} ${isSorted ? styles.thSorted : ""}`}
+                      style={{ textAlign: align }}
                     >
-                      <div className={styles.thContent}>
+                      <div
+                        className={styles.thContent}
+                        style={{
+                          justifyContent: align === "right" ? "flex-end" : align === "center" ? "center" : "flex-start",
+                        }}
+                      >
                         {flexRender(header.column.columnDef.header, header.getContext())}
                         <span className={styles.sortIcons}>
                           <span className={isSorted === "asc" ? styles.activeSort : ""}>▲</span>
@@ -112,10 +156,13 @@ export default function DataTable({ data = [] }) {
                 >
                   {row.getVisibleCells().map((cell) => {
                     const isSorted = cell.column.getIsSorted();
+                    const align = cell.column.columnDef.meta?.align || "left";
+
                     return (
                       <td
                         key={cell.id}
                         className={`${styles.td} ${isSorted ? styles.tdSorted : ""}`}
+                        style={{ textAlign: align }}
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
@@ -126,7 +173,7 @@ export default function DataTable({ data = [] }) {
             ) : (
               <tr>
                 <td
-                  colSpan={columns.length}
+                  colSpan={Math.max(columns.length, 1)}
                   className={styles.noResults}
                 >
                   No matching records found

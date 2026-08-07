@@ -8,4 +8,6 @@ export { default as Faq4 } from "./Faq/Faq4";
 export { default as Toast1Demo } from "../UiDemos/Toast1Demo";
 
 export { default as EpisodeGrid } from "./LayoutAnimation/EpisodeGrid";
+
 export { default as MarketTable } from "./Tables/MarketTable/MarketTable";
+export { default as DataTable } from "./Tables/DataTable/DataTable";

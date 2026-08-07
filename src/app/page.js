@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import styles from "./page.module.css";
-
 import componentList from "@/data/components.json";
 
 export default function Home() {
