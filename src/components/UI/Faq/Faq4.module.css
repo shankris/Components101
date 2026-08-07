@@ -1,0 +1,91 @@
+:root {
+  --accordion-bg: #ffffff;
+  --accordion-header: #f9f9f9;
+  --accordion-header-active: #bfc1fd;
+  --accordion-text: #1f2937;
+  --accordion-header-text: #f8f8f8;
+}
+
+html[data-theme="dark"] {
+  --accordion-bg: #1e1e24;
+  --accordion-header: #2c2d36;
+  --accordion-header-active: #818cf8;
+  --accordion-text: #e5e7eb;
+  --accordion-header-text: #ffffff;
+}
+
+
+.wrapper {
+  background: var(--accordion-bg);
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.card {
+  margin-bottom: 10px;
+}
+
+.card header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--accordion-header);
+  color: var(--accordion-header-text);
+  transition: background 0.3s ease;
+}
+
+.active {
+  background: var(--accordion-header-active) !important;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.icon {
+  transition: transform 0.4s ease;
+}
+
+.active .icon {
+  transform: rotate(-180deg);
+}
+
+.collapse {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+.show {
+  height: auto;
+}
+
+.collapse p {
+  padding: 16px;
+  margin: 0;
+  line-height: 1.7;
+  font-size: 14px;
+  color: var(--accordion-text);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 16px;
+  }
+
+  .card h2 {
+    font-size: 15px;
+  }
+
+  .collapse p {
+    font-size: 13px;
+  }
+}

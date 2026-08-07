@@ -28,6 +28,13 @@
     "description": "FAQ with Images"
   },
   {
+    "name": "Faq 4",
+    "component": "Faq4",
+    "slug": "faq4",
+    "category": "FAQ",
+    "description": "Accordion FAQ"
+  },
+  {
     "name": "Episode Grid - Layout Animation",
     "component": "EpisodeGrid",
     "slug": "episode-grid",
@@ -47,6 +54,13 @@
     "component": "MarketTable",
     "category": "Tables",
     "description": "Market Table with Timeline"
+  },
+  {
+    "name": "DataTable",
+    "slug": "DataTable",
+    "component": "DataTable",
+    "category": "Tables",
+    "description": "DataTable Relicated"
   },
   {
     "name": "Toast Notification 1",
