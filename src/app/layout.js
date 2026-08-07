@@ -22,8 +22,8 @@ const openSans = Open_Sans({
 });
 
 export const metadata = {
-  title: "Bookmarker 2",
-  description: "A curated list of bookmarks",
+  title: "Components",
+  description: "Reusable React Js Components",
 };
 
 export default function RootLayout({ children }) {
