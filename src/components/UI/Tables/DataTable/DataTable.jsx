@@ -1,16 +1,38 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from "@tanstack/react-table";
+
+import { ChevronFirst, ChevronLeft, ChevronRight, ChevronLast, Search, X } from "lucide-react";
+
+import cellComponents from "./cells";
 import styles from "./DataTable.module.css";
 
 export default function DataTable({ data = [], config = [] }) {
   const [sorting, setSorting] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
+  const searchInputRef = useRef(null);
+
+  // search textbox keyboard access
+  useEffect(() => {
+    const handleShortcut = (event) => {
+      if (event.altKey && event.key.toLowerCase() === "t") {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleShortcut);
+
+    return () => {
+      window.removeEventListener("keydown", handleShortcut);
+    };
+  }, []);
 
   // Safely ensure data is an array
   const safeData = useMemo(() => {
     if (Array.isArray(data)) return data;
+
     if (typeof data === "string") {
       try {
         return JSON.parse(data);
@@ -18,6 +40,7 @@ export default function DataTable({ data = [], config = [] }) {
         return [];
       }
     }
+
     return [];
   }, [data]);
 
@@ -26,34 +49,65 @@ export default function DataTable({ data = [], config = [] }) {
     if (Array.isArray(config) && config.length > 0) {
       return config.map((col) => {
         const key = typeof col === "string" ? col : col.key;
-        const label = typeof col === "object" && col.label ? col.label : key ? key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, " ") : "";
+
+        const label = typeof col === "object" && col.label ? col.label : key ? key.charAt(0).toUpperCase() + key.slice(1).replace(/\_/g, " ") : "";
+
         const align = typeof col === "object" && col.align ? col.align : "left";
+
+        const CellComponent = typeof col === "object" && col.cell ? cellComponents[col.cell] : null;
 
         return {
           accessorKey: key,
           header: label,
           meta: { align },
+
           cell: (info) => {
+            if (CellComponent) {
+              return (
+                <CellComponent
+                  {...info.row.original}
+                  value={info.getValue()}
+                  config={col}
+                />
+              );
+            }
+
             const val = info.getValue();
-            if (typeof val === "boolean") return val ? "Yes" : "No";
+
+            if (typeof val === "boolean") {
+              return val ? "Yes" : "No";
+            }
+
             if (val === null || val === undefined) {
               return <span className={styles.emptyValue}>—</span>;
             }
+
             return String(val);
           },
         };
       });
     }
 
+    // Auto generate columns if config missing
     if (safeData.length > 0) {
       const sample = safeData[0];
+
       return Object.keys(sample).map((key) => ({
         accessorKey: key,
-        header: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, " "),
-        meta: { align: "left" },
+
+        header: key.charAt(0).toUpperCase() + key.slice(1).replace(/\_/g, " "),
+
+        meta: {
+          align: "left",
+        },
+
         cell: (info) => {
           const val = info.getValue();
-          if (val === null || val === undefined) return "—";
+
+          if (val === null || val === undefined) {
+            return "—";
+          }
+
           return String(val);
         },
       }));
@@ -65,50 +119,122 @@ export default function DataTable({ data = [], config = [] }) {
   const table = useReactTable({
     data: safeData,
     columns,
+
     state: {
       sorting,
-      // Only include globalFilter in state when an actual query exists
-      ...(globalFilter ? { globalFilter } : {}),
+      globalFilter,
     },
+
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
+
+    globalFilterFn: (row, columnId, filterValue) => {
+      const search = String(filterValue).toLowerCase().trim();
+
+      if (!search) return true;
+
+      return Object.values(row.original).some((value) =>
+        String(value ?? "")
+          .toLowerCase()
+          .includes(search),
+      );
+    },
+
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
 
+  const pageCount = table.getPageCount();
+  const currentPage = table.getState().pagination.pageIndex;
+
+  const getPageNumbers = () => {
+    const pages = [];
+
+    if (pageCount <= 7) {
+      for (let i = 0; i < pageCount; i++) {
+        pages.push(i);
+      }
+      return pages;
+    }
+
+    pages.push(0);
+
+    if (currentPage > 3) {
+      pages.push("...");
+    }
+
+    const start = Math.max(1, currentPage - 1);
+    const end = Math.min(pageCount - 2, currentPage + 1);
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    if (currentPage < pageCount - 4) {
+      pages.push("...");
+    }
+
+    pages.push(pageCount - 1);
+
+    return pages;
+  };
+
   return (
     <div className={styles.container}>
       {/* Top Controls Bar */}
       <div className={styles.topBar}>
-        <div className={styles.lengthSelect}>
-          <label htmlFor='pageSize'>Show</label>
-          <select
-            id='pageSize'
-            value={table.getState().pagination.pageSize}
-            onChange={(e) => table.setPageSize(Number(e.target.value))}
-          >
-            {[10, 25, 50, 100].map((pageSize) => (
-              <option
-                key={pageSize}
-                value={pageSize}
-              >
-                {pageSize}
-              </option>
-            ))}
-          </select>
-          <span>entries</span>
+        <div className={styles.pageSize}>
+          <div className={styles.lengthSelect}>
+            <label htmlFor='pageSize'>Show</label>
+            <select
+              id='pageSize'
+              value={table.getState().pagination.pageSize}
+              onChange={(e) => table.setPageSize(Number(e.target.value))}
+            >
+              {[10, 25, 50, 100].map((pageSize) => (
+                <option
+                  key={pageSize}
+                  value={pageSize}
+                >
+                  {pageSize}
+                </option>
+              ))}
+            </select>
+            <span>entries</span>
+          </div>
         </div>
 
         <div className={styles.search}>
-          <label htmlFor='tableSearch'>Search:</label>
-          <input
-            id='tableSearch'
-            type='text'
-            value={globalFilter}
-            onChange={(e) => setGlobalFilter(e.target.value)}
-          />
+          <div className={styles.searchInputWrapper}>
+            <Search
+              className={styles.searchIcon}
+              size={17}
+            />
+
+            <input
+              ref={searchInputRef}
+              id='tableSearch'
+              type='text'
+              value={globalFilter}
+              placeholder='Search the table'
+              onChange={(e) => setGlobalFilter(e.target.value)}
+            />
+
+            {globalFilter && (
+              <button
+                type='button'
+                className={styles.clearSearch}
+                onClick={() => setGlobalFilter("")}
+                aria-label='Clear search'
+              >
+                <X size={16} />
+              </button>
+            )}
+
+            {!globalFilter && <span className={styles.searchShortcut}>Alt + T</span>}
+          </div>
         </div>
       </div>
 
@@ -193,17 +319,53 @@ export default function DataTable({ data = [], config = [] }) {
         <div className={styles.pagination}>
           <button
             className={styles.pageBtn}
+            onClick={() => table.setPageIndex(0)}
+            disabled={!table.getCanPreviousPage()}
+          >
+            <ChevronFirst size={16} />
+          </button>
+
+          <button
+            className={styles.pageBtn}
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Previous
+            <ChevronLeft size={16} />
           </button>
+
+          {getPageNumbers().map((page, index) =>
+            page === "..." ? (
+              <span
+                key={`dots-${index}`}
+                className={styles.dots}
+              >
+                ...
+              </span>
+            ) : (
+              <button
+                key={page}
+                className={`${styles.pageBtn} ${currentPage === page ? styles.activePage : ""}`}
+                onClick={() => table.setPageIndex(page)}
+              >
+                {page + 1}
+              </button>
+            ),
+          )}
+
           <button
             className={styles.pageBtn}
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Next
+            <ChevronRight size={16} />
+          </button>
+
+          <button
+            className={styles.pageBtn}
+            onClick={() => table.setPageIndex(pageCount - 1)}
+            disabled={!table.getCanNextPage()}
+          >
+            <ChevronLast size={16} />
           </button>
         </div>
       </div>
