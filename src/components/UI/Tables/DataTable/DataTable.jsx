@@ -60,6 +60,12 @@ export default function DataTable({ data = [], config = [] }) {
           accessorKey: key,
           header: label,
           meta: { align },
+          enableSorting: col.enableSorting !== false,
+          meta: {
+            align,
+            hideHeader: col.hideHeader === true,
+            width: col.width,
+          },
 
           cell: (info) => {
             if (CellComponent) {
@@ -251,9 +257,9 @@ export default function DataTable({ data = [], config = [] }) {
                   return (
                     <th
                       key={header.id}
-                      onClick={header.column.getToggleSortingHandler()}
+                      onClick={header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined}
                       className={`${styles.th} ${isSorted ? styles.thSorted : ""}`}
-                      style={{ textAlign: align }}
+                      style={{ textAlign: align, width: header.column.columnDef.meta?.width }}
                     >
                       <div
                         className={styles.thContent}
@@ -261,11 +267,16 @@ export default function DataTable({ data = [], config = [] }) {
                           justifyContent: align === "right" ? "flex-end" : align === "center" ? "center" : "flex-start",
                         }}
                       >
-                        {flexRender(header.column.columnDef.header, header.getContext())}
-                        <span className={styles.sortIcons}>
-                          <span className={isSorted === "asc" ? styles.activeSort : ""}>▲</span>
-                          <span className={isSorted === "desc" ? styles.activeSort : ""}>▼</span>
-                        </span>
+                        {!header.column.columnDef.meta?.hideHeader && (
+                          <>
+                            {flexRender(header.column.columnDef.header, header.getContext())}
+
+                            <span className={styles.sortIcons}>
+                              <span className={isSorted === "asc" ? styles.activeSort : ""}>▲</span>
+                              <span className={isSorted === "desc" ? styles.activeSort : ""}>▼</span>
+                            </span>
+                          </>
+                        )}
                       </div>
                     </th>
                   );
@@ -288,7 +299,10 @@ export default function DataTable({ data = [], config = [] }) {
                       <td
                         key={cell.id}
                         className={`${styles.td} ${isSorted ? styles.tdSorted : ""}`}
-                        style={{ textAlign: align }}
+                        style={{
+                          textAlign: align,
+                          width: cell.column.columnDef.meta?.width,
+                        }}
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>

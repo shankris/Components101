@@ -1,0 +1,19 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 500;
+}
+
+.lastName {
+  color: #888;
+  letter-spacing: 0.03em;
+}
+
+.position {
+  font-size: 0.85rem;
+  color: #777;
+  margin-top: 2px;
+}

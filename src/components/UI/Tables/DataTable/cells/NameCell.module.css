@@ -1,0 +1,10 @@
+.name {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.lastName {
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}

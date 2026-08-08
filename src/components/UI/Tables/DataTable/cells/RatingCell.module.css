@@ -1,0 +1,29 @@
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 150px;
+}
+
+.barContainer {
+  flex: 1;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg,
+      #bfdbfe,
+      #60a5fa);
+  transition: width 0.3s ease;
+}
+
+.value {
+  min-width: 35px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}

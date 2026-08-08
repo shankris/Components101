@@ -60,7 +60,7 @@
     "slug": "DataTable",
     "component": "DataTable",
     "category": "Tables",
-    "description": "DataTable Relicated using TanStac React Table"
+    "description": "DataTable Recreated using TanStac React Table version 8.21.3"
   },
   {
     "name": "Toast Notification 1",
