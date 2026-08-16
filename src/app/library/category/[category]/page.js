@@ -24,7 +24,7 @@ export default async function CategoryPage({ params }) {
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div>
       <h1 style={{ textTransform: "capitalize" }}>{category}</h1>
 
       {filteredComponents.map((item) => {

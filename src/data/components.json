@@ -49,18 +49,18 @@
     "description": "Modal dialog component"
   },
   {
-    "name": "Market Table",
-    "slug": "MarketTable",
-    "component": "MarketTable",
-    "category": "Tables",
-    "description": "Market Table with Timeline"
-  },
-  {
     "name": "DataTable",
     "slug": "DataTable",
     "component": "DataTable",
     "category": "Tables",
     "description": "DataTable Recreated using TanStac React Table version 8.21.3"
+  },
+  {
+    "name": "Market Table",
+    "slug": "MarketTable",
+    "component": "MarketTable",
+    "category": "Tables",
+    "description": "Market Table with Timeline"
   },
   {
     "name": "Toast Notification 1",

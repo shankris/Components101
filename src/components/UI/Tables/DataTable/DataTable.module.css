@@ -49,7 +49,7 @@
 .tableContainer {
   width: 100%;
   overflow-x: auto;
-  min-height: 520px;
+  min-height: 495px;
 }
 
 .table {
@@ -306,4 +306,93 @@
   font-size: 11px;
 
   pointer-events: none;
+}
+
+
+/* =========================================
+   Responsive Table
+   ========================================= */
+
+@media (max-width: 768px) {
+  .tableContainer {
+    overflow-x: visible;
+  }
+
+  .table {
+    display: block;
+    width: 100%;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+  }
+
+  .table td {
+    display: flex;
+    width: 100%;
+    padding: 7px 0;
+    border: none;
+    text-align: left !important;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    flex: 0 0 110px;
+    font-weight: 600;
+    margin-right: 12px;
+  }
+
+  .bottomBar {
+    flex-direction: column-reverse;
+  }
+
+  .alignLeft {
+    text-align: left;
+  }
+
+  .alignCenter {
+    text-align: center;
+  }
+
+  .alignRight {
+    text-align: right;
+  }
+
+  .alignLeft {
+    text-align: left;
+  }
+
+  .alignCenter {
+    text-align: center;
+  }
+
+  .alignRight {
+    text-align: right;
+  }
+
+  .justifyLeft {
+    justify-content: flex-start;
+  }
+
+  .justifyCenter {
+    justify-content: center;
+  }
+
+  .justifyRight {
+    justify-content: flex-end;
+  }
 }

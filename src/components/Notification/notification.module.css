@@ -43,7 +43,7 @@
   z-index: 1000;
 }
 
-.header {
+/* .header {
   padding: 6px 16px;
   border-bottom: 1px solid var(--borderColor);
   font-weight: 300;
@@ -51,7 +51,7 @@
   background-color: var(--NotificationHeaderBg);
   display: flex;
   justify-content: space-between;
-}
+} */
 
 .footer {
   text-align: center;

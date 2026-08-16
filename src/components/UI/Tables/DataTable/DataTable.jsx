@@ -257,16 +257,10 @@ export default function DataTable({ data = [], config = [] }) {
                   return (
                     <th
                       key={header.id}
-                      onClick={header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined}
-                      className={`${styles.th} ${isSorted ? styles.thSorted : ""}`}
-                      style={{ textAlign: align, width: header.column.columnDef.meta?.width }}
+                      onClick={header.column.getToggleSortingHandler()}
+                      className={`${styles.th} ${align === "right" ? styles.alignRight : align === "center" ? styles.alignCenter : styles.alignLeft} ${isSorted ? styles.thSorted : ""}`}
                     >
-                      <div
-                        className={styles.thContent}
-                        style={{
-                          justifyContent: align === "right" ? "flex-end" : align === "center" ? "center" : "flex-start",
-                        }}
-                      >
+                      <div className={`${styles.thContent} ${align === "right" ? styles.justifyRight : align === "center" ? styles.justifyCenter : styles.justifyLeft}`}>
                         {!header.column.columnDef.meta?.hideHeader && (
                           <>
                             {flexRender(header.column.columnDef.header, header.getContext())}
@@ -298,11 +292,8 @@ export default function DataTable({ data = [], config = [] }) {
                     return (
                       <td
                         key={cell.id}
-                        className={`${styles.td} ${isSorted ? styles.tdSorted : ""}`}
-                        style={{
-                          textAlign: align,
-                          width: cell.column.columnDef.meta?.width,
-                        }}
+                        className={`${styles.td} ${align === "right" ? styles.alignRight : align === "center" ? styles.alignCenter : styles.alignLeft} ${isSorted ? styles.tdSorted : ""}`}
+                        data-label={cell.column.columnDef.header}
                       >
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
