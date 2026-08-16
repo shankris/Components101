@@ -56,16 +56,20 @@ export default function DataTable({ data = [], config = [] }) {
 
         const CellComponent = typeof col === "object" && col.cell ? cellComponents[col.cell] : null;
 
-        return {
-          accessorKey: key,
+        // Allow a column to define the value TanStack should use
+        // for sorting without coupling the table to any specific cell.
+        const sortValue = typeof col === "object" && Array.isArray(col.sortValue) ? col.sortValue : null;
+
+        const columnDefinition = {
           header: label,
-          meta: { align },
-          enableSorting: col.enableSorting !== false,
+
           meta: {
             align,
             hideHeader: col.hideHeader === true,
             width: col.width,
           },
+
+          enableSorting: col.enableSorting !== false,
 
           cell: (info) => {
             if (CellComponent) {
@@ -91,6 +95,21 @@ export default function DataTable({ data = [], config = [] }) {
             return String(val);
           },
         };
+
+        // If sortValue is provided, create a value from those
+        // fields for TanStack Table to sort.
+        if (sortValue) {
+          columnDefinition.accessorFn = (row) =>
+            sortValue
+              .map((field) => row[field])
+              .filter((value) => value !== null && value !== undefined)
+              .join(" ");
+        } else {
+          // Normal columns continue to use their existing accessorKey.
+          columnDefinition.accessorKey = key;
+        }
+
+        return columnDefinition;
       });
     }
 
