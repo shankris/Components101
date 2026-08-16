@@ -56,6 +56,7 @@ export default async function CategoryPage({ params }) {
             <Component
               data={componentData.data}
               config={componentData.config}
+              filters={componentData.filters}
             />
           </section>
         );

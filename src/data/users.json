@@ -21,9 +21,19 @@
         "cell": "NameCell",
         "sortValue": ["first_name", "last_name"]
       },
-      { "key": "position", "label": "Position" },
-      { "key": "office", "label": "Office" },
-      { "key": "age", "label": "Age", "align": "right" },
+      {
+        "key": "position",
+        "label": "Position"
+      },
+      {
+        "key": "office",
+        "label": "Office"
+      },
+      {
+        "key": "age",
+        "label": "Age",
+        "align": "right"
+      },
       {
         "key": "rating",
         "label": "Employee Rating",
@@ -41,6 +51,16 @@
         "key": "start_date",
         "label": "Start Date",
         "cell": "DateCell"
+      }
+    ],
+
+    "filters": [
+      {
+        "key": "office",
+        "label": "Location",
+        "type": "checkbox",
+        "showCount": true,
+        "sort": "alphabetical"
       }
     ],
 

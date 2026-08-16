@@ -1,0 +1,147 @@
+.container {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filterHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.filterLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.clearButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--text-muted, #777);
+
+  font-size: 0.75rem;
+
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  color: #222;
+}
+
+.clearIcon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 6px 0;
+
+  cursor: pointer;
+}
+
+.optionLeft {
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+}
+
+.option input {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.optionLabel {
+  flex: 1;
+  min-width: 0;
+
+  margin-left: 8px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 0.85rem;
+}
+
+.optionCount {
+  flex-shrink: 0;
+
+  margin-left: 16px;
+
+  min-width: 20px;
+
+  color: var(--text-muted, #777);
+
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+
+  text-align: right;
+}
+
+.option:hover {
+  background: var(--bg-hover, rgba(0, 0, 0, 0.04));
+}
+
+.expandButton {
+  align-self: flex-start;
+
+  margin-top: 4px;
+  padding: 2px 0;
+
+  border: 0;
+  background: transparent;
+
+  color: #555;
+
+  font-size: 0.8rem;
+
+  cursor: pointer;
+}
+
+.expandButton:hover {
+  color: #111;
+  text-decoration: underline;
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}
+
+
+.additionalOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
