@@ -221,6 +221,10 @@ export default function DataTable({ data = [], config = [], filters = [] }) {
 
     return safeData.filter((row) => {
       return filters.every((filter) => {
+        // -----------------------------------------------
+        // Checkbox filter
+        // -----------------------------------------------
+
         if (filter.type === "checkbox") {
           const selectedValues = filterState[filter.key] || [];
 
@@ -229,6 +233,36 @@ export default function DataTable({ data = [], config = [], filters = [] }) {
           }
 
           return selectedValues.includes(String(row?.[filter.key]));
+        }
+
+        // -----------------------------------------------
+        // Numeric range filter
+        // -----------------------------------------------
+
+        if (filter.type === "range") {
+          const selectedRange = filterState[filter.key];
+
+          if (!selectedRange) {
+            return true;
+          }
+
+          const rawValue = row?.[filter.key];
+
+          if (rawValue === null || rawValue === undefined || rawValue === "") {
+            return false;
+          }
+
+          const numericValue = Number(String(rawValue).replace(/[$€£¥₹,\s]/g, ""));
+
+          if (Number.isNaN(numericValue)) {
+            return false;
+          }
+
+          const min = selectedRange.min !== undefined && selectedRange.min !== "" ? Number(selectedRange.min) : -Infinity;
+
+          const max = selectedRange.max !== undefined && selectedRange.max !== "" ? Number(selectedRange.max) : Infinity;
+
+          return numericValue >= min && numericValue <= max;
         }
 
         return true;

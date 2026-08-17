@@ -1,5 +1,8 @@
 import componentList from "@/data/components.json";
+
 import dataTableData from "@/data/users.json";
+import salaryTableData from "@/data/salary-table.json";
+
 import * as Components from "@/components/UI";
 
 export default async function CategoryPage({ params }) {
@@ -41,8 +44,19 @@ export default async function CategoryPage({ params }) {
           );
         }
 
-        // Temporary demo data for DataTable
-        const componentData = item.component === "DataTable" ? dataTableData[0] : item;
+        // --------------------------------------------------
+        // DataTable demo data
+        // --------------------------------------------------
+
+        let componentData = item;
+
+        if (item.slug === "DataTable") {
+          componentData = dataTableData[0];
+        }
+
+        if (item.slug === "salary-table") {
+          componentData = salaryTableData[0];
+        }
 
         return (
           <section

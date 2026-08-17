@@ -7,17 +7,18 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  margin-bottom: 22px;
 }
 
 .filterHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 4px;
+  gap: 12px;
 }
 
 .filterLabel {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
@@ -42,10 +43,9 @@
   color: #222;
 }
 
-.clearIcon {
-  font-size: 16px;
-  line-height: 1;
-}
+/* -----------------------------------------
+   Checkbox filters
+----------------------------------------- */
 
 .options {
   display: flex;
@@ -67,7 +67,6 @@
 .optionLeft {
   display: flex;
   align-items: center;
-
   min-width: 0;
 }
 
@@ -77,16 +76,11 @@
 }
 
 .optionLabel {
-  flex: 1;
-  min-width: 0;
-
   margin-left: 8px;
 
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
-  font-size: 0.85rem;
 }
 
 .optionCount {
@@ -94,54 +88,110 @@
 
   margin-left: 16px;
 
-  min-width: 20px;
-
+  font-size: 0.8rem;
   color: var(--text-muted, #777);
 
-  font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
-
-  text-align: right;
 }
 
-.option:hover {
-  background: var(--bg-hover, rgba(0, 0, 0, 0.04));
+/* -----------------------------------------
+   Range filters
+----------------------------------------- */
+
+.rangeFilter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.expandButton {
-  align-self: flex-start;
+.rangeHint {
+  font-size: 0.72rem;
+  color: var(--text-muted, #777);
+}
 
-  margin-top: 4px;
-  padding: 2px 0;
+.rangeInputs {
+  display: flex;
+  gap: 8px;
+}
 
-  border: 0;
-  background: transparent;
+.rangeField {
+  flex: 1;
+  min-width: 0;
 
-  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rangeField label {
+  font-size: 0.72rem;
+  color: var(--text-muted, #777);
+}
+
+.rangeField input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  height: 32px;
+  padding: 4px 6px;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  background: #fff;
 
   font-size: 0.8rem;
 
-  cursor: pointer;
+  outline: none;
 }
 
-.expandButton:hover {
-  color: #111;
-  text-decoration: underline;
+.rangeField input:focus {
+  border-color: #999;
 }
 
-/* =========================================
-   Responsive
-   ========================================= */
+/* -----------------------------------------
+   Mobile
+----------------------------------------- */
 
 @media (max-width: 768px) {
   .container {
     width: 100%;
   }
+
+  .rangeInputs {
+    max-width: 400px;
+  }
 }
 
-
-.additionalOptions {
+.rangeInputs {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 6px;
+}
+
+.rangeInputs input {
+  width: 90px;
+  min-width: 0;
+  padding: 5px 7px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.rangeInputs input:focus {
+  outline: none;
+  border-color: #999;
+}
+
+.rangeSeparator {
+  color: #777;
+  flex-shrink: 0;
+}
+
+.rangeError {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #b42318;
 }

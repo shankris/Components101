@@ -53,12 +53,20 @@
     "slug": "DataTable",
     "component": "DataTable",
     "category": "Tables",
-    "description": "DataTable Recreated using TanStac React Table version 8.21.3"
+    "description": "DataTable Recreated using TanStack React Table version 8.21.3",
+    "dataSource": "users"
+  },
+  {
+    "name": "DataTable - Numeric Filters",
+    "slug": "salary-table",
+    "component": "DataTable",
+    "category": "Tables",
+    "description": "DataTable demonstrating numeric and date filtering"
   },
   {
     "name": "Market Table",
-    "slug": "MarketTable",
     "component": "MarketTable",
+    "slug": "MarketTable",
     "category": "Tables",
     "description": "Market Table with Timeline"
   },
