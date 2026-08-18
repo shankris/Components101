@@ -56,17 +56,16 @@
 
     "filters": [
       {
-        "key": "office",
-        "label": "Location",
-        "type": "checkbox",
-        "showCount": true,
-        "sort": "alphabetical"
-      },
-      {
         "key": "age",
         "label": "Age",
         "type": "range"
       },
+      {
+        "key": "rating",
+        "label": "Rating",
+        "type": "range"
+      },
+
       {
         "key": "salary",
         "label": "Salary",

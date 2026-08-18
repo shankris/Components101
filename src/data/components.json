@@ -53,8 +53,9 @@
     "slug": "DataTable",
     "component": "DataTable",
     "category": "Tables",
-    "description": "DataTable Recreated using TanStack React Table version 8.21.3",
-    "dataSource": "users"
+    "description": "DataTable with search, sorting and pagination",
+    "dataSource": "users",
+    "filters": false
   },
   {
     "name": "DataTable - Numeric Filters",
