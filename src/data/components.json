@@ -62,14 +62,17 @@
     "slug": "salary-table",
     "component": "DataTable",
     "category": "Tables",
-    "description": "DataTable demonstrating numeric and date filtering"
+    "description": "DataTable demonstrating numeric and date filtering",
+    "dataSource": "users",
+    "filters": true
   },
   {
     "name": "Market Table",
     "component": "MarketTable",
     "slug": "MarketTable",
     "category": "Tables",
-    "description": "Market Table with Timeline"
+    "description": "Market Table with Timeline",
+    "dataSource": "market"
   },
   {
     "name": "Toast Notification 1",

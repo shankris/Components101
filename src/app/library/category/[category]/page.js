@@ -1,12 +1,21 @@
 import componentList from "@/data/components.json";
-
-import dataTableData from "@/data/users.json";
-import salaryTableData from "@/data/salary-table.json";
-
+import usersData from "@/data/users.json";
+import marketData from "@/data/market.json";
 import * as Components from "@/components/UI";
+
+import { userTableConfig, userTableFilters } from "@/components/UI/Tables/DataTableConfig";
 
 export default async function CategoryPage({ params }) {
   const { category } = await params;
+
+  const dataSources = {
+    users: usersData,
+    market: marketData.stocks,
+  };
+
+  // console.log("usersData:", usersData);
+  // console.log("usersData length:", usersData.length);
+  console.log("DataTable config:", userTableConfig);
 
   const filteredComponents = componentList.filter((item) => item.category?.toLowerCase() === category?.toLowerCase());
 
@@ -44,18 +53,21 @@ export default async function CategoryPage({ params }) {
           );
         }
 
-        // --------------------------------------------------
-        // DataTable demo data
-        // --------------------------------------------------
+        // ----------------------------------------------
+        // Get data from the configured data source
+        // ----------------------------------------------
 
-        let componentData = item;
+        const componentData = {
+          ...item,
+          data: dataSources[item.dataSource] || [],
+        };
 
-        if (item.slug === "DataTable") {
-          componentData = dataTableData[0];
-        }
+        let config = item.config;
+        let filters = item.filters;
 
-        if (item.slug === "salary-table") {
-          componentData = salaryTableData[0];
+        if (item.component === "DataTable") {
+          config = userTableConfig.columns;
+          filters = item.filters ? userTableFilters : [];
         }
 
         return (
@@ -64,13 +76,12 @@ export default async function CategoryPage({ params }) {
             style={{ marginBottom: "80px" }}
           >
             <h2>{item.name}</h2>
-
             <p>{item.description}</p>
 
             <Component
               data={componentData.data}
-              config={componentData.config}
-              filters={componentData.filters}
+              config={config}
+              filters={filters}
             />
           </section>
         );

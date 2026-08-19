@@ -1,94 +1,276 @@
 .container {
-  background: #0d1117;
-  padding: 16px;
-  border-radius: 12px;
-  color: #c9d1d9;
+  width: 100%;
 }
 
 .title {
-  margin-bottom: 8px;
+  margin: 0 0 18px;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------
+   Period header
+---------------------------------------------------------- */
+
+.periodHeader {
+  width: 520px;
+  margin-left: auto;
+  margin-bottom: 12px;
+}
+
+.periodInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dateRange {
+  font-size: 0.75rem;
+  color: #888;
+  white-space: nowrap;
 }
 
 .periodBar {
   display: flex;
-  gap: 6px;
-  margin-bottom: 12px;
+  align-items: center;
+  gap: 4px;
 }
 
 .periodBtn {
+  border: 0;
   background: transparent;
-  border: none;
-  color: #8b949e;
+
   padding: 6px 10px;
+
   cursor: pointer;
-  border-radius: 6px;
+
+  font: inherit;
+  font-size: 0.82rem;
+  color: #777;
+
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
 }
 
 .periodBtn:hover {
-  color: #fff;
+  color: #333;
 }
 
-.active {
-  background: #1f6feb;
-  color: #fff;
+.periodBtn.active {
+  background: transparent;
+  color: #2563eb;
+
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+/* ----------------------------------------------------------
+   Table
+---------------------------------------------------------- */
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .th {
-  font-size: 12px;
-  color: #8b949e;
-  text-align: left;
+  padding: 11px 12px;
+  border-bottom: 1px solid #ddd;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: right;
+
+  color: #666;
+  white-space: nowrap;
+
   cursor: pointer;
-  padding-bottom: 8px;
+}
+
+.th:first-child {
+  text-align: left;
+  width: 22%;
+}
+
+.th:nth-child(2) {
+  width: 16%;
+  cursor: default;
+}
+
+.th:nth-child(3) {
+  width: 19%;
+}
+
+.th:nth-child(4) {
+  width: 17%;
+}
+
+.th:nth-child(5) {
+  width: 13%;
+}
+
+.th:nth-child(6) {
+  width: 13%;
 }
 
 .td {
-  padding: 10px 0;
-  border-top: 1px solid #21262d;
+  padding: 13px 12px;
+  border-bottom: 1px solid #eee;
+
+  font-size: 0.88rem;
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+.td:first-child {
+  text-align: left;
+}
+
+/* ----------------------------------------------------------
+   Symbol
+---------------------------------------------------------- */
+
+.symbol {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
 .symbol strong {
-  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
 .symbol span {
-  font-size: 12px;
-  color: #8b949e;
+  overflow: hidden;
+
+  font-size: 0.72rem;
+  color: #888;
+  text-overflow: ellipsis;
 }
 
+/* ----------------------------------------------------------
+   Positive / negative
+---------------------------------------------------------- */
+
 .up {
-  color: #2ea043;
+  color: #238636;
 }
 
 .down {
-  color: #f85149;
+  color: #d1242f;
 }
 
-/* Skeleton */
+/* ----------------------------------------------------------
+   Heatmap
+---------------------------------------------------------- */
+
+.heatmap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.heatmap span {
+  display: block;
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 2px;
+}
+
+.heatStrongPositive {
+  background: #16803c;
+}
+
+.heatPositive {
+  background: #52a967;
+}
+
+.heatWeakPositive {
+  background: #a7d8b3;
+}
+
+.heatNeutral {
+  background: #ddd;
+}
+
+.heatWeakNegative {
+  background: #e8a7ad;
+}
+
+.heatNegative {
+  background: #d85c67;
+}
+
+.heatStrongNegative {
+  background: #b4232f;
+}
+
+.heatmapEmpty {
+  color: #bbb;
+}
+
+/* ----------------------------------------------------------
+   Skeleton
+---------------------------------------------------------- */
+
 .skeletonRow td {
-  padding: 14px 0;
+  padding: 10px 12px;
 }
 
 .skeleton {
-  height: 14px;
   width: 100%;
-  background: linear-gradient(90deg,
-      #161b22 25%,
-      #21262d 37%,
-      #161b22 63%);
-  animation: shimmer 1.4s infinite;
+  height: 18px;
+
+  border-radius: 4px;
+
+  background: #eee;
+
+  animation: pulse 1.5s ease-in-out infinite;
 }
 
-@keyframes shimmer {
+@keyframes pulse {
   0% {
-    background-position: -400px 0;
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
   }
 
   100% {
-    background-position: 400px 0;
+    opacity: 0.5;
+  }
+}
+
+/* ----------------------------------------------------------
+   Responsive
+---------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .table {
+    min-width: 700px;
+  }
+
+  .periodHeader {
+    overflow-x: auto;
+  }
+
+  .periodBar {
+    flex-shrink: 0;
   }
 }

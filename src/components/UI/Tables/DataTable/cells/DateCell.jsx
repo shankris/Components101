@@ -12,7 +12,9 @@ export default function DateCell({ value }) {
   }
 
   const formattedDate = new Intl.DateTimeFormat(undefined, {
-    dateStyle: "long",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
   }).format(date);
 
   return <span className={styles.date}>{formattedDate}</span>;
